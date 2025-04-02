@@ -315,7 +315,7 @@ class Replicate {
    * @yields {ServerSentEvent} Each streamed event from the prediction
    */
   async *stream(ref, options) {
-    const { wait, signal, useFileOutput = this.useFileOutput, ...data } = options;
+    const { wait, signal, maxWaitTimeInSec = 5 * 60, useFileOutput = this.useFileOutput, ...data } = options;
 
     const identifier = ModelVersionIdentifier.parse(ref);
 
@@ -340,6 +340,7 @@ class Replicate {
         fetch: this.fetch,
         options: {
           useFileOutput,
+          maxWaitTimeInSec,
           ...(signal ? { signal } : {}),
         },
       });

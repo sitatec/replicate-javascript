@@ -174,6 +174,7 @@ declare module "replicate" {
         webhook_events_filter?: WebhookEventType[];
         signal?: AbortSignal;
         useFileOutput?: boolean;
+        maxWaitTimeInSec?: number;
       }
     ): AsyncGenerator<ServerSentEvent>;
 
